@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import Transaction from "./Transaction";
 
 export default function Transactions() {
-    const { transactions, isLoading, isError } = useSelector((state) => state.Transaction)
+    const { transactions, isLoading, isError } = useSelector((state) => state.transaction)
 
     let content = null
     if (isLoading) {
@@ -18,7 +18,9 @@ export default function Transactions() {
                 transaction={transaction}
             />)
     }
-    if (!isLoading && !isError && transactions.length === 0)
+    if (!isLoading && !isError && transactions?.length === 0){
+        content = <p>No transactions found </p>
+    }
     return (
         <>
             <p className="second_heading">Your Transactions:</p>
