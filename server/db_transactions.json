@@ -17,6 +17,18 @@
       "type": "expense",
       "amount": 500,
       "id": 3
+    },
+    {
+      "name": "kaniz",
+      "type": "expense",
+      "amount": 500,
+      "id": 4
+    },
+    {
+      "name": "sohel",
+      "type": "expense",
+      "amount": 500,
+      "id": 5
     }
   ]
 }
