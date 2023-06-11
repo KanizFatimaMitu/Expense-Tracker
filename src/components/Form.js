@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createTransaction } from "../features/transaction/transactionSlice";
 
@@ -9,6 +9,7 @@ export default function Form() {
     const [editMode, setEditMode] = useState(false);
     const dispatch = useDispatch();
     const { isLoading, isError } = useSelector((state) => state.transaction);
+    const editing = useSelector(state => state.editing)
 
     const reset = () => {
         setName('')
@@ -31,6 +32,21 @@ export default function Form() {
     const cancelEditMode = () => {
         setEditMode(false)
     }
+
+    // for listen editing mode
+    useEffect(() => {
+        const { id, name, amount, type } = editing || {};
+        if (id) {
+            setEditMode(true);
+            setName(name);
+            setType(type);
+            setAmount(amount);
+        }
+        else {
+            setEditMode(false);
+            reset();
+        }
+    }, [editing])
 
     return (
         <div className="form">
