@@ -6,10 +6,11 @@ export default function Form() {
     const [name, setName] = useState("");
     const [type, setType] = useState("");
     const [amount, setAmount] = useState("");
+    const [editMode, setEditMode] = useState(false);
     const dispatch = useDispatch();
     const { isLoading, isError } = useSelector((state) => state.transaction);
 
-    const reset = () =>{
+    const reset = () => {
         setName('')
         setType('')
         setAmount('')
@@ -26,6 +27,10 @@ export default function Form() {
         );
         reset();
     };
+
+    const cancelEditMode = () => {
+        setEditMode(false)
+    }
 
     return (
         <div className="form">
@@ -91,7 +96,9 @@ export default function Form() {
                 )}
             </form>
 
-            <button className="btn cancel_edit">Cancel Edit</button>
+            {editMode && <button
+                className="btn cancel_edit"
+                onClick={cancelEditMode}> Cancel Edit</button>}
         </div>
     );
 }
