@@ -34,16 +34,18 @@ export default function Form() {
         dispatch(changeTransaction({
             id: editing?.id,
             data: {
-                name: editing?.name,
-                amount: editing?.amount,
-                type: editing?.type,
+                name: name,
+                amount: amount,
+                type: type,
             },
         }))
+        setEditMode(false);
         reset();
     }
 
     const cancelEditMode = () => {
-        setEditMode(false)
+        reset();
+        setEditMode(false);
     }
 
     // for listen editing mode
